@@ -29,6 +29,9 @@ const localeRedirectMap = {"en":"en","en-us":"en","en-gb":"en","ru":"ru","ru-ru"
           target = fallback;
         }
         var currentUrl = window.location.href;
+        if(currentUrl.endsWith('/')) {
+          currentUrl = currentUrl.slice(0, -1);
+        }
         var destination = currentUrl + '/' + target + '/';
         if (window.location.pathname !== destination) {
           window.location.replace(destination);
