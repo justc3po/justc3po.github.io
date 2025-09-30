@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Redirecting…</title><script>(function(){const fallbackLocale = "en";
+const localeRedirectMap = {"en":"en","en-us":"en","en-gb":"en","ru":"ru","ru-ru":"ru"};
+
+      (function () {
+        if (typeof window === 'undefined') return;
+
+        var fallback = fallbackLocale;
+        var localeMap = localeRedirectMap;
+
+        var languages = (navigator.languages || [navigator.language || '']).map(function (entry) {
+          return (entry || '').toLowerCase();
+        });
+
+        var target = null;
+        for (var i = 0; i < languages.length; i++) {
+          var lang = languages[i];
+          if (localeMap[lang]) {
+            target = localeMap[lang];
+            break;
+          }
+          var short = lang.split('-')[0];
+          if (localeMap[short]) {
+            target = localeMap[short];
+            break;
+          }
+        }
+
+        if (!target) {
+          target = fallback;
+        }
+        var currentUrl = window.location.href;
+        var destination = currentUrl + '/' + target + '/';
+        if (window.location.pathname !== destination) {
+          window.location.replace(destination);
+        }
+      })();
+    })();</script></head> <body> <noscript> <main style="font-family: system-ui, sans-serif; min-height: 100vh; display: grid; place-items: center; padding: 2rem;"> <div style="max-width: 28rem; text-align: center; display: grid; gap: 1rem;"> <h1 style="font-size: 1.5rem; font-weight: 600; margin: 0;">Select your language</h1> <p style="color: #475569; margin: 0;">
+JavaScript is disabled. Please choose your preferred language.
+</p> <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;"> <a href="/en/" style="padding: 0.6rem 1.25rem; border-radius: 9999px; background: #0d74ff; color: white; text-decoration: none; font-weight: 600;">English</a> <a href="/ru/" style="padding: 0.6rem 1.25rem; border-radius: 9999px; background: #1f2937; color: white; text-decoration: none; font-weight: 600;">Русский</a> </div> </div> </main> </noscript> </body></html>
